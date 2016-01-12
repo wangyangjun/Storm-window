@@ -41,6 +41,8 @@ public class WindowPairReduceByKeyBolt<K,V> extends WindowedBolt {
 
     /**
      * called after receiving a normal tuple
+     * store data in current slide
+     * ( "---*--" a window with 6 slides, current slide is 3)
      * @param tuple
      */
     @Override
@@ -68,6 +70,7 @@ public class WindowPairReduceByKeyBolt<K,V> extends WindowedBolt {
      */
     @Override
     public void processSlide(BasicOutputCollector collector) {
+        logger.error("processSlide:" + slideIndexInBuffer);
         try{
             // update slideInWindow node and its parents until root
             // single slide window
